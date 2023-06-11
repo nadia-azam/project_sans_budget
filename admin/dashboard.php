@@ -7,17 +7,17 @@ if(isset($_COOKIE['tutor_id'])){
     header('location:login.php');
 }
 
-//$count_content = $conn->prepare(" SELECT * FROM `content` WHERE tutor_id = ?");
-//$count_content->execute([$tutor_id]);
-//$total_contents = $count_content->rowCount(); 
+$count_doc = $conn->prepare(" SELECT * FROM `pdf` WHERE tutor_id = ?");
+$count_doc->execute([$tutor_id]);
+$total_doc = $count_doc->rowCount(); 
 
 $count_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
 $count_playlist->execute([$tutor_id]);
 $total_playlist = $count_playlist->rowCount(); 
 
-//$count_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
-//$count_likes->execute([$tutor_id]);
-//$total_likes= $count_likes->rowCount();
+$count_video = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ?");
+$count_video->execute([$tutor_id]);
+$total_video= $count_video->rowCount();
 
 $count_plan = $conn->prepare("SELECT * FROM `plan` WHERE plan_id = ?");
 $count_plan->execute([$tutor_id]);
@@ -43,6 +43,7 @@ $total_plan= $count_plan->rowCount();
     <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="icon" href="../images/myLogoLettreGrand.png" type="image/x-icon">
     
 
 </head>
@@ -64,7 +65,7 @@ $total_plan= $count_plan->rowCount();
             </div>
 
             <div class="box">
-                <h3><?= $total_playlist; ?></h3>
+                <h3><?= $total_plan; ?></h3>
                 <p>all my plans </p>
                 <a href="../admin/add_plans.php" class="btn">add  plan</a>
             </div>
@@ -76,13 +77,13 @@ $total_plan= $count_plan->rowCount();
             </div>
 
             <div class="box">
-                <h3><?= $total_plan; ?></h3>
+                <h3><?= $total_video; ?></h3>
                 <p>all videos</p>
                 <a href="../admin/add_video.php" class="btn">add video</a>
             </div>
 
             <div class="box">
-                <h3><?= $total_plan; ?></h3>
+                <h3><?= $total_doc; ?></h3>
                 <p>all pdf</p>
                 <a href="../admin/add_pdf.php" class="btn">add pdf</a>
             </div>
@@ -115,9 +116,18 @@ $total_plan= $count_plan->rowCount();
         let footer = document.querySelector('.footer');
         let body = document.body;
 
+
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+
+        let logo = document.getElementById("#logo2");
+        
+
+        /*function changer_photo(){
+            var photo = document.getElementById("#logo2");
+            photo.src="../images/myLogo(1).jpg";
+        }*/
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -159,16 +169,22 @@ $total_plan= $count_plan->rowCount();
         let toggleBtn = document.querySelector('#toggle-btn');
         let darkMode = localStorage.getItem('dark-mode');
 
+        
+
         const enabelDarkMode = () => {
             toggleBtn.classList.replace('fa-sun','fa-moon');
             body.classList.add('dark');
             localStorage.setItem('dark-mode','enabled');
+            logo.src="../images/myLogo(1).jpg";
+            
         }
 
         const disableDarkMode = () => {
             toggleBtn.classList.replace('fa-moon','fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode','disabled');
+            
+            logo.src="../images/myLogo.jpeg";
         }
 
         if(darkMode === 'enabled'){
@@ -183,8 +199,9 @@ $total_plan= $count_plan->rowCount();
                 disableDarkMode();
             }
         } 
+        
 
-
+        
 
 
 

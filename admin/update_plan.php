@@ -77,6 +77,7 @@ if(isset($_POST['delete_playlist'])){
     <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="icon" href="../images/myLogoLettreGrand.png" type="image/x-icon">
     
 
 </head>
@@ -150,6 +151,7 @@ if(isset($_POST['delete_playlist'])){
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+        let logo = document.getElementById("#logo2");
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -195,12 +197,14 @@ if(isset($_POST['delete_playlist'])){
             toggleBtn.classList.replace('fa-sun','fa-moon');
             body.classList.add('dark');
             localStorage.setItem('dark-mode','enabled');
+            logo.src="../images/myLogo(1).jpg";
         }
 
         const disableDarkMode = () => {
             toggleBtn.classList.replace('fa-moon','fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode','disabled');
+            logo.src="../images/myLogo.jpeg";
         }
 
         if(darkMode === 'enabled'){
@@ -215,6 +219,11 @@ if(isset($_POST['delete_playlist'])){
                 disableDarkMode();
             }
         } 
+
+        
+        
+        
+
     </script>
 </body>
 </html>

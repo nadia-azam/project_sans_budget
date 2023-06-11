@@ -71,6 +71,7 @@ section{
     font-size: 2.5rem;
     color: var(--black);
 }
+
 .header .flex .search-form{
     width: 50rem;
     background-color: var(--liight-bg);
@@ -192,6 +193,7 @@ section{
 #connexion1{
     display: none;
 }
+
 
 
 

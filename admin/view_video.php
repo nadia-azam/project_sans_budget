@@ -13,6 +13,32 @@ if(isset($_GET['get_id'])){
     $get_id = '';
     header('location:playists.php');
 }
+if(isset($_POST['delete_playlist'])){
+    $delete_id = $_POST['delete_id'];
+    $delete_id = filter_var($delete_id,FILTER_SANITIZE_STRING);
+
+    $verify_playlist = $conn->prepare("SELECT * FROM `content` WHERE id=?");
+    $verify_playlist->execute([$delete_id]);
+
+    if ($verify_playlist->rowCount()>0){
+        $fetch_thumb = $verify_playlist->fetch(PDO::FETCH_ASSOC);
+        $prev_thumb = $fetch_thumb['thumb'];
+        if ($prev_thumb != ''){
+            unlink('../uploaded_files/'.$prev_thumb);
+        }
+        //$delete_bookmark = $conn->prepare("DELETE FROM `bookmark` WHERE playlist_id=?");
+        //$delete_bookmark->execute([$delete_id]);
+
+        $delete_playlist = $conn->prepare("DELETE FROM `content` WHERE id=?");
+        $delete_playlist->execute([$delete_id]);
+
+        $message[]='video deleted!';
+
+
+    }else{
+        $message[] = 'video was already deleted !' ; 
+    }
+}
 
 ?>
 
@@ -29,6 +55,7 @@ if(isset($_GET['get_id'])){
     <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="icon" href="../images/myLogoLettreGrand.png" type="image/x-icon">
     
 
 </head>
@@ -63,11 +90,10 @@ if(isset($_GET['get_id'])){
                     <p><i class="fas fa-calendar"></i><span><?= $fetch_content ['date']?></span></p>
             </div>
             <div class="details">
-                    <h3 class="title"><?= $fetch_content ['title']; ?></h3>
-                    <p class="description"><?= $fetch_content['description']?></p>
+                    
                     <form action="" method="POST" class="flex-btn">
-                        <input type="hidden" name="delete_id" value="<?= $playlist_id['id'];?>">
-                        <a href="update_playist.php?get_id=<?= $playlist_id['id'];?>" class="option-btn">update</a>
+                        <input type="hidden" name="delete_id" value="<?= $get_id;?>">
+                    
                         <input type="submit" value="delete" name="delete_playlist" class="delete-btn">
                     </form>
             </div>
@@ -80,7 +106,7 @@ if(isset($_GET['get_id'])){
             <?php 
             }
                 }else {
-                    echo '<p class="empty"> playlist was not found! </p>';
+                    echo '<p class="empty"> video was not found! </p>';
                 }
             ?>
             </div>   
@@ -94,10 +120,7 @@ if(isset($_GET['get_id'])){
 
 
 
-<?php
-    include ("../components/footer.php");
-    
-    ?>
+
 
 
 
@@ -110,6 +133,7 @@ if(isset($_GET['get_id'])){
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+        let logo = document.getElementById("#logo2");
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -155,12 +179,14 @@ if(isset($_GET['get_id'])){
             toggleBtn.classList.replace('fa-sun','fa-moon');
             body.classList.add('dark');
             localStorage.setItem('dark-mode','enabled');
+            logo.src="../images/myLogo(1).jpg";
         }
 
         const disableDarkMode = () => {
             toggleBtn.classList.replace('fa-moon','fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode','disabled');
+            logo.src="../images/myLogo.jpeg"; 
         }
 
         if(darkMode === 'enabled'){
@@ -174,7 +200,10 @@ if(isset($_GET['get_id'])){
             }else{
                 disableDarkMode();
             }
-        } 
+        }
+        
+        
+        
     </script>
 </body>
 </html>

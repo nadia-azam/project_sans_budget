@@ -84,6 +84,7 @@ if(isset($_COOKIE['tutor_id'])){
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+        let logo = document.getElementById("#logo2");
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -121,6 +122,11 @@ if(isset($_COOKIE['tutor_id'])){
 
             }
         }
+
+        
+        logo.src="../images/myLogo(1).jpg";
+        logo.src="../images/myLogo.jpeg";
+
     </script>
 </body>
 </html>

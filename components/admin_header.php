@@ -18,7 +18,8 @@ if(isset($message)){
 <header class="header">
     <section class="flex">
 
-        <a href="dashboard.php" class="logo">TimoneY.</a>
+        <a href="dashboard.php" class="logo" ><img src="../images/myLogo.jpeg" width="150px" id="#logo2"></a>
+        
         <!--<form action="search_page.php" method="post" class="search-form">
             <input type="text" placeholder="search here..." required maxlength="100" name="search_box">
             <button type="submit" class="fas fa-search" name="search_btn"></button>

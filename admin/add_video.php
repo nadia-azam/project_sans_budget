@@ -41,13 +41,13 @@ if (isset($_POST['submit'])){
     $verify_content->execute([$tutor_id,$title,$description]);
 
     if($verify_content->rowCount() > 0){
-        $message[] = 'content already created!';
+        $message[] = 'video already created!';
     }else{
         $add_content = $conn->prepare("INSERT INTO `content` (id , tutor_id,  title, description,video, thumb, status ) VALUES (?,?,?,?,?,?,?)");
         $add_content->execute([$id, $tutor_id, $title, $description, $rename_video, $rename_thumb, $status]);
         move_uploaded_file($thumb_tmp_name,$thumb_folder);
         move_uploaded_file($video_tmp_name,$video_folder);
-        $message[] = 'new content created!';
+        $message[] = 'new video created!';
 
     }
 
@@ -74,7 +74,7 @@ if (isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/admin_style.css">
-    
+    <link rel="icon" href="../images/myLogoLettreGrand.png" type="image/x-icon">
 
 </head>
 <body>
@@ -88,8 +88,8 @@ if (isset($_POST['submit'])){
         <form action="" method="POST" enctype="multipart/form-data">
             <p>video status <span>*</span></p>
             <select name="status" required id="" class="box">
-                <option value="active">active</option>
-                <option value="desactive">desactive</option>
+                <option value="important">important</option>
+                <option value="not important">not imoptant</option>
             </select>
             <p>video title <span>*</span></p>
             <input type="text" class="box" name="title" maxlength="100" placeholder="enter content title" required>
@@ -128,6 +128,7 @@ if (isset($_POST['submit'])){
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+        let logo = document.getElementById("#logo2");
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -172,12 +173,14 @@ if (isset($_POST['submit'])){
             toggleBtn.classList.replace('fa-sun','fa-moon');
             body.classList.add('dark');
             localStorage.setItem('dark-mode','enabled');
+            logo.src="../images/myLogo(1).jpg";
         }
 
         const disableDarkMode = () => {
             toggleBtn.classList.replace('fa-moon','fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode','disabled');
+            logo.src="../images/myLogo.jpeg";
         }
 
         if(darkMode === 'enabled'){
@@ -192,6 +195,12 @@ if (isset($_POST['submit'])){
                 disableDarkMode();
             }
         } 
+
+
+       
+        
+        
+
     </script>
 </body>
 </html>

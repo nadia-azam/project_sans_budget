@@ -12,7 +12,7 @@
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/acceuil_style.css">
 </head>
-<body style="padding-left:0rem ; background-color: white;">
+<body style="padding-left:0rem ; background-color: white; width:100%">
 <header class="header" >
     <section class="flex">
         <img src="../images/myLogo.jpeg" style="width: 200px;" alt="">
@@ -57,15 +57,7 @@
             <img src="../images/photo_welcome.jpeg" alt="">
         </div>
     </div>
-
-
-
-
-
-
-
-
-
+</section>
 
 
 
@@ -84,7 +76,5 @@ window.onscroll = () =>{
     navbar.classList.remove('active');
 };
 </script>
-
-    
 </body>
 </html>

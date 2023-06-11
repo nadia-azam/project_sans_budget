@@ -183,7 +183,11 @@ body.active{
 .header .flex .logo{
     font-size: 2.5rem;
     color: var(--black);
+    
+   
 }
+
+
 .header .flex .search-form{
     width: 50rem;
     background-color: var(--liight-bg);
@@ -421,6 +425,9 @@ body.active{
     color: var(--black);
     margin-bottom: 1rem;
     text-transform: capitalize;
+}
+.logo{
+    display: none;
 }
 
 
@@ -737,6 +744,13 @@ body.dark{
     display: none;
 }*/
 
+i.fa-play:hover{
+    background-color: rgb(0, 0, 0, .6);
+
+}
+
+
+
 .playlist-details .row .thumb video{
     width: 640;
     height: 460;
@@ -746,10 +760,12 @@ body.dark{
 }
 
 .playlist-details .row{
-    background-color: var(--white);
+   
     padding: 2rem;
 }
-
+.playlist-details .row .details {
+    background-color: transparent;
+}
 
 
 
@@ -879,4 +895,8 @@ body.dark{
     .header .flexs img{
         width: 150px;
     }
+    #back{
+        position: relative;
+    }
+    
 }

@@ -1,0 +1,34 @@
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scen.layout.VBox;
+import javafx.stage.Stage;
+
+
+public class authentification  extends application {
+@override
+	// la creation de l'objet du conteneur de lyout
+	VBox root = new VBox() ; 
+	//la creation des objet button zone de text et zone de password 
+	Button btn = new Button("envoyer") ; 
+	TextField txtNom = new TextField();    // constructeur sans parametre
+	PasswordField txtMotDePasse = new PasswordField();
+	Label lblAffichage = new Label();
+
+
+	//ajouter ces composants au conteneur 
+	root.getChildren().add(txtNom);
+	root.getChildren().add(txtMotDePasse);
+	root.getChildren().add(btn);
+	root.getChildren().add(lblAffichage);
+
+
+	//main 
+	public static void main(String[] args) {
+		launch(args);
+	
+
+}
+
+
+}

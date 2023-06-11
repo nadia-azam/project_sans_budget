@@ -22,6 +22,7 @@ if(isset($_COOKIE['tutor_id'])){
     <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
     <!-- custom css file link-->
     <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="icon" href="../images/myLogoLettreGrand.png" type="image/x-icon">
 </head>
 <body>
 <?php
@@ -29,29 +30,6 @@ if(isset($_COOKIE['tutor_id'])){
     
     ?>
 
-<section class="dashboard">
-
-    <h1 class="heading">budjet</h1>
-    <div class="box-container">
-
-
-    <div class="box">
-        
-        <a href="#" class="btn">ready challege</a>
-    </div>
-
-    <div class="box">
-        
-        <a href="#" class="btn">new challege</a>
-    </div>
-    <div class="box">
-        
-        <a href="#" class="btn">my challege</a>
-    </div>
-
-
-
-    <?php    include ("../components/footer.php");?>
 
 
 <script >
@@ -61,6 +39,7 @@ if(isset($_COOKIE['tutor_id'])){
         let  profile = document.querySelector('.header .flex .profile');
         let  searchform = document.querySelector('.header .flex .search-form');
         let  sideBar = document.querySelector('.side-bar');
+        let logo = document.getElementById("#logo2");
 
         document.querySelector('#user-btn').onclick = () =>{
             profile.classList.toggle('active');
@@ -106,12 +85,14 @@ if(isset($_COOKIE['tutor_id'])){
             toggleBtn.classList.replace('fa-sun','fa-moon');
             body.classList.add('dark');
             localStorage.setItem('dark-mode','enabled');
+            logo.src="../images/myLogo(1).jpg";
         }
 
         const disableDarkMode = () => {
             toggleBtn.classList.replace('fa-moon','fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode','disabled');
+            logo.src="../images/myLogo.jpeg";
         }
 
         if(darkMode === 'enabled'){
@@ -125,7 +106,11 @@ if(isset($_COOKIE['tutor_id'])){
             }else{
                 disableDarkMode();
             }
-        } 
+        }
+        
+        
+        
+        
     </script>
 </body>
 </html>
